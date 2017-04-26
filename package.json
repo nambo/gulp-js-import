@@ -1,11 +1,15 @@
 {
   "name": "gulp-js-import",
   "version": "1.0.0",
-  "description": "you can use @import to js just like css with gulp",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "through2": "^2.0.1"
+  },
+  "description": "A gulp plugin which can import .js files into .js files",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/nambo/gulp-js-import.git"
@@ -16,7 +20,7 @@
     "import"
   ],
   "author": "nambo",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nambo/gulp-js-import/issues"
   },
