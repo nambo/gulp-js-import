@@ -1,6 +1,6 @@
 First, install gulp-js-import as a devDependency:
 ```
-npm install gulp-html-import --save-dev
+npm install gulp-js-import --save-dev
 ```
 Then add it to the gulpfile.js:
 

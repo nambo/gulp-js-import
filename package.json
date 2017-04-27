@@ -1,6 +1,6 @@
 {
   "name": "gulp-js-import",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,7 @@
   "description": "A gulp plugin which can import .js files into .js files",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/nambo/gulp-js-import.git"
+    "url": "https://github.com/nambo/gulp-js-import.git"
   },
   "keywords": [
     "gulp",
