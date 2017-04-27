@@ -1,11 +1,14 @@
-##INSTALL
+## INSTALL
+
 ```
 npm install gulp-js-import --save-dev
 ```
-##USAGE
+## USAGE
+
 First, install `gulp-js-import` as a devDependency:
 
 Then add it to the gulpfile.js:
+
 
 ```
 var gulp = require('gulp');
@@ -19,8 +22,10 @@ gulp.task('import', function() {
 ```
 
 Final, run import task where you need, eg: `gulp import`
-##DEMO
-###File Tree
+## DEMO
+
+### File Tree
+
 this is the file tree:
 
 ```
@@ -38,8 +43,9 @@ demo
 |   
 -- package.json
 ```
-###Brief Intorduce
+### Brief Intorduce
 index.js:
+
 
 ```
 // index.js
@@ -53,7 +59,8 @@ output(config);
 
 in `index.js`, you can use `@import 'xxx.js'` when you want import a js file
 
-###Run
+### Run
+
 Enter the `demo` directory in command
 
 ```
