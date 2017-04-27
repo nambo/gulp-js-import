@@ -24,6 +24,8 @@ gulp.task('import', function() {
 Final, run import task where you need, eg: `gulp import`
 ## DEMO
 
+you can get all code [here]:https://github.com/nambo/gulp-js-import
+
 ### File Tree
 
 this is the file tree:
