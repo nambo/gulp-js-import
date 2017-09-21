@@ -3,7 +3,8 @@ const gutil = require('gulp-util')
 const through = require('through2')
 const fs = require('fs')
 
-module.exports = function () {
+module.exports = function (options) {
+  options = options || {};
   let importStack = {}
   const importJS = (path) => {
     if (!path) {
@@ -29,7 +30,7 @@ module.exports = function () {
         return ''
       }
 
-      console.log('import "' + fileName + '" --> "' + path + '"')
+      !options.hideConsole && console.log('import "' + fileName + '" --> "' + path + '"')
       let importContent = importJS(importPath) || ''
 
       return importContent
@@ -60,7 +61,7 @@ module.exports = function () {
 
 		file.contents = new Buffer(content)
 		file.path = gutil.replaceExtension(file.path, '.js')
-		console.log('ImportJS finished.')
+		!options.hideConsole && console.log('ImportJS finished.')
 		cb(null, file)
 	})
 }

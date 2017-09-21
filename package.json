@@ -1,6 +1,6 @@
 {
   "name": "gulp-js-import",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "A gulp plugin which can import .js files into .js files",
   "keywords": [
     "gulp",
