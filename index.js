@@ -11,7 +11,7 @@ module.exports = function (options) {
       return ''
     }
 
-    const fileReg = /@import\s["'](.*\.js)["']/gi
+    const fileReg = /import\s["'](.*\.js)["']/gi
 
     if (!fs.existsSync(path)) {
       throw new Error('file ' + path + ' no exist')
