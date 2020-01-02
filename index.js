@@ -10,8 +10,12 @@ module.exports = function (options) {
     if (!path) {
       return ''
     }
-
-    const fileReg = /@import\s["'](.*\.js)["']/gi
+    let fileReg;
+    if (options.es6import) {
+        fileReg = /\nimport\s["'](.*\.js)["']/gi
+      } else {
+        fileReg = /\n@import\s["'](.*\.js)["']/gi
+    }
 
     if (!fs.existsSync(path)) {
       throw new Error('file ' + path + ' no exist')
@@ -24,10 +28,11 @@ module.exports = function (options) {
     importStack[path] = path
 
     content = content.replace(fileReg, (match, fileName) => {
-      let importPath = path.replace(/[^\/]*\.js$/, fileName)
-
-      if (importPath in importStack) {
-        return ''
+      let importPath = path.replace(/[^\\^\/]*\.js$/, fileName)
+      if (options.importStack) {
+          if (importPath in importStack) {
+	    return ''
+	  }
       }
 
       !options.hideConsole && console.log('import "' + fileName + '" --> "' + path + '"')
@@ -52,7 +57,7 @@ module.exports = function (options) {
 		}
 
     let content
-    try { 
+    try {
       content = importJS(file.path)
     } catch(e) {
       cb(new gutil.PluginError('gulp-js-import', e.message))
