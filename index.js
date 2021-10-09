@@ -61,6 +61,8 @@ module.exports = function (options) {
     let content
     try {
       content = importJS(file.path)
+	  // reset stack in when everysingle file has finished
+      importStack = {};
     } catch (e) {
       cb(new gutil.PluginError('gulp-js-import', e.message))
       return
