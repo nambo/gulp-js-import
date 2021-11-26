@@ -3,9 +3,30 @@ const gutil = require('gulp-util')
 const through = require('through2')
 const fs = require('fs')
 
+function clean_path(path) {
+
+  path = path.replace(/\\/g, '/');
+
+  let prev_folder_count = path.match(/..\//g).length;
+
+  let folder_array = path.split("/");
+
+  for (let i = 0; prev_folder_count > i; i++)
+    folder_array.forEach(function (element, index, array) {
+      if (element == '..') {
+        array.splice(index, 1);
+        array.splice(index - 1, 1);
+      }
+    });
+
+  // path = path.replace(/.\//g, '');
+
+  return folder_array.join('/');
+}
+
 module.exports = function (options) {
   options = options || {};
-  let importStack = {}
+  let importStack = []
   const importJS = (path) => {
     if (!path) {
       return ''
@@ -26,23 +47,24 @@ module.exports = function (options) {
       encoding: 'utf8'
     })
 
-    importStack[path] = path
-
     content = content.replace(fileReg, (match, fileName) => {
       let importPath = path.replace(/[^\\^\/]*\.js$/, fileName)
 
       if (options.importStack) {
-        if (importPath in importStack) {
+        if (importStack.includes(clean_path(importPath))) {
+          !options.hideConsole && console.log('file: ' + importPath + 'was imported do not import it again')
           return ''
         }
       }
 
+      importStack.push(clean_path(importPath))
+
       !options.hideConsole && console.log('import "' + fileName + '" --> "' + path + '"')
+
       let importContent = importJS(importPath) || ''
 
       return importContent
     })
-
 
     return content
   }
@@ -61,8 +83,8 @@ module.exports = function (options) {
     let content
     try {
       content = importJS(file.path)
-	  // reset stack in when everysingle file has finished
-      importStack = {};
+      // reset stack when everysingle file has finished
+      importStack = [];
     } catch (e) {
       cb(new gutil.PluginError('gulp-js-import', e.message))
       return
