@@ -34,9 +34,9 @@ module.exports = function (options) {
 
     let fileReg;
     if (options.es6import) {
-      fileReg = /\n *import\s["'](.*\.js)["']/gi
+      fileReg = /\n* *import\s["'](.*\.js)["']/gi
     } else {
-      fileReg = /\n *@import\s["'](.*\.js)["']/gi
+      fileReg = /\n* *@import\s["'](.*\.js)["']/gi
     }
 
     if (!fs.existsSync(path)) {
